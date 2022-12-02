@@ -1,0 +1,40 @@
+name: Test-Build-Pipeline
+
+on:
+  push:
+   branches: main
+  pull_request:
+    branches: main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+      - name: Install dependencies
+        run: |
+          cd "${{github.workspace}}/test1"
+          npm install    
+      - name: Test
+        run: |
+          cd "${{github.workspace}}/test1"
+          npm test
+        env:
+          CI: true
+      - name: Generate build
+        run: |
+          cd "${{github.workspace}}/test1"
+          npm run build
+      # Share artifact inside workflow
+      - name: Share artifact inside workflow
+        uses: actions/upload-artifact@v1
+        with:
+          name: react-github-actions-build
+          path: |
+            cd "${{github.workspace}}/test1"
+            build
