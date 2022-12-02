@@ -7,7 +7,7 @@ on:
     branches: main
 jobs:
   build:
-    runs-on: ubuntu-labuild:test
+    runs-on: ubuntu-labuild:test1
 
     strategy:
       matrix:
