@@ -35,4 +35,6 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: react-github-actions-build
-          path: build
+          path: |
+            cd "${{github.workspace}}/test1"
+            build
