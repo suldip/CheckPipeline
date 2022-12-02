@@ -17,9 +17,13 @@ jobs:
         with:
           node-version: 18.x
       - name: Install dependencies
-        run: npm install    
+        run: |
+          cd "${{github.workspace}}/test1"
+          npm install    
       - name: Test
-        run: npm test
+        run: |
+          cd "${{github.workspace}}/test1"
+          npm test
         env:
           CI: true
       - name: Generate build
