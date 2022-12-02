@@ -2,6 +2,7 @@ name: Test-Build-Pipeline
 
 on:
   push:
+  
     tags:
       - '*'
 
